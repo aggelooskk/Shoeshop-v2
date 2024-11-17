@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="py-3">
+      <main className="py-4">
         <Container>
           <Outlet />
         </Container>

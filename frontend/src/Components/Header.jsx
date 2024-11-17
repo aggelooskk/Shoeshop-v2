@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Navbar, Nav, Badge, Container, NavDropdown } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
@@ -7,12 +7,16 @@ import { LinkContainer } from "react-router-bootstrap";
 const Header = () => {
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
+      <Navbar
+        className="py-4"
+        bg="dark"
+        variant="dark"
+        expand="md"
+        collapseOnSelect
+      >
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>
-              ShoeShop
-            </Navbar.Brand>
+            <Navbar.Brand>ShoeShop</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -23,11 +27,17 @@ const Header = () => {
                   Cart
                 </Nav.Link>
               </LinkContainer>
-                <LinkContainer to="/login">
-                  <Nav.Link>
-                    <FaUser /> Sign in
-                  </Nav.Link>
-                </LinkContainer>
+              <LinkContainer to="/login">
+                <Nav.Link>
+                  <FaUser /> Sign in
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="">
+                <Nav.Link>About</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="">
+                <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
         </Container>
