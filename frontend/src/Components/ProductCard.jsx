@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
+
 
 const ProductCard = () => {
   return (
     <>
-      ProductCard
     </>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

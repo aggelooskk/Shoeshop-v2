@@ -1,9 +1,10 @@
 import React from 'react'
+import ProductCard from '../Components/ProductCard'
 
 const HomeScreen = () => {
   return (
     <>
-      HomeScreen
+      <ProductCard />
     </>
   )
 }
