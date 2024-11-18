@@ -1,46 +1,28 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-// Async thunk to fetch all products (for regular users)
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:5001/api/products", {
-        method: "GET",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch products");
-      }
-
-      const data = await response.json();
-      return data; // Returns the list of products
+      const response = await axios.get("http://localhost:3000/api/products");
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
-// Async thunk to fetch a single product by ID (for product detail view)
 export const fetchProductById = createAsyncThunk(
   "products/fetchProductById",
   async (productId, { rejectWithValue }) => {
     try {
-      const response = await fetch(
-        `http://localhost:5001/api/products/${productId}`,
-        {
-          method: "GET",
-        }
+      const response = await axios.get(
+        `http://localhost:3000/api/products/${productId}`
       );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch product");
-      }
-
-      const data = await response.json();
-      return data; // Returns the single product's data
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data || error.message);
     }
   }
 );
@@ -58,7 +40,6 @@ const productSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Fetch all products
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true;
       })
@@ -70,7 +51,6 @@ const productSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      // Fetch single product by ID (product details)
       .addCase(fetchProductById.pending, (state) => {
         state.loading = true;
       })
