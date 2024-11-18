@@ -1,6 +1,5 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { Navbar, Nav, Badge, Container, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 
