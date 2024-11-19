@@ -1,9 +1,14 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
+  const totalQty = useSelector((state) =>
+    state.cart.cartItems.reduce((acc, item) => acc + item.qty, 0)
+  );
+
   return (
     <header>
       <Navbar
@@ -23,7 +28,17 @@ const Header = () => {
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <FaShoppingCart />
+                  {" "}
                   Cart
+                  {" "}
+                  {totalQty > 0 && (
+                    <Badge
+                      pill
+                      bg="danger"
+                    >
+                      {totalQty}
+                    </Badge>
+                  )}
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/login">
