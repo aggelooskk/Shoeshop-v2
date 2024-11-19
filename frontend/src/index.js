@@ -13,12 +13,16 @@ import store from "./store";
 import { Provider } from "react-redux";
 import HomeScreen from "./Screens/HomeScreen";
 import CartScreen from "./Screens/CartScreen";
+import LoginScreen from "./Screens/LoginScreen";
+import RegisterScreen from "./Screens/RegisterScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} element={<HomeScreen />} />
       <Route path="/cart" element={<CartScreen />} />
+      <Route path="/login" element={<LoginScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
     </Route>
   )
 );

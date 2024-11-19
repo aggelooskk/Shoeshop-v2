@@ -5,7 +5,7 @@ export const registerUser = createAsyncThunk(
   'user/registerUser',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:5001/api/register', {
+      const response = await fetch('http://localhost:5001/api/users/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -28,7 +28,7 @@ export const loginUser = createAsyncThunk(
   'user/loginUser',
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:5001/api/login', {
+      const response = await fetch('http://localhost:5001/api/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userData),
@@ -51,7 +51,7 @@ export const fetchUserProfile = createAsyncThunk(
   'user/fetchUserProfile',
   async (token, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:5001/api/profile', {
+      const response = await fetch('http://localhost:5001/api/users/profile', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -90,6 +90,7 @@ const userSlice = createSlice({
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
+        state.loggedIn = true; 
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload;
@@ -117,6 +118,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.loggedIn = true; 
         state.loading = false;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
