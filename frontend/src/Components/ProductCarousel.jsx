@@ -23,7 +23,7 @@ const ProductCarousel = () => {
 
   return (
     <>
-      <Carousel slide={true} className="sm-primary sm-4">
+      <Carousel slide={true} className="py-1 m-auto">
         {products.map((product, index) => (
           <Carousel.Item key={index}>
             <Image src={product.image} alt={product.name} />

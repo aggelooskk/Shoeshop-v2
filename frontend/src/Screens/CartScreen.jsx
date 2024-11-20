@@ -31,7 +31,7 @@ const CartScreen = () => {
       <Col md={8}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
-          <Alert>
+          <Alert variant="danger">
             Your cart is empty <Link to="/">Go Back</Link>
           </Alert>
         ) : (

@@ -6,3 +6,7 @@ main {
     font-family: cursive, sans-serif;
     font-size: xx-large;
   }
+ 
+  h3 {
+    color: black;
+  }

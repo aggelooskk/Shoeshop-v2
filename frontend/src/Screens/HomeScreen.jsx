@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import ProductCard from "../Components/ProductCard";
 import { fetchProducts } from "../Slices/productSlice";
+import ProductCarousel from "../Components/ProductCarousel";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,10 @@ const HomeScreen = () => {
   return (
     <>
       <Container>
+      <ProductCarousel />
         <Row>
           {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+            <Col key={product._id} sm={12} md={6} lg={4} xl={4}>
               <ProductCard product={product} />
             </Col>
           ))}
