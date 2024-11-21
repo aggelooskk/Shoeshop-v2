@@ -11,7 +11,7 @@ const ProductCarousel = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const { products, status, error } = useSelector((state) => state.product);
+  const { products, status, error } = useSelector((state) => state.products);
 
   if (status === "loading")
     return (

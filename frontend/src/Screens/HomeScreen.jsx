@@ -7,7 +7,7 @@ import ProductCarousel from "../Components/ProductCarousel";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.product);
+  const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(fetchProducts()); 
