@@ -10,13 +10,13 @@ const HomeScreen = () => {
   const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(fetchProducts()); 
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   return (
     <>
       <Container>
-      <ProductCarousel />
+        <ProductCarousel />
         <Row>
           {products.map((product) => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={4}>

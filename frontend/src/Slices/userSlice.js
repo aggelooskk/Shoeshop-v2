@@ -1,69 +1,66 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Async thunk to register a user
 export const registerUser = createAsyncThunk(
-  'user/registerUser',
+  "user/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:5001/api/users/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:5001/api/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
       });
 
       if (!response.ok) {
-        throw new Error('Registration failed');
+        throw new Error("Registration failed");
       }
 
       const data = await response.json();
-      return data; // Returns user info after successful registration
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-// Async thunk to login a user
 export const loginUser = createAsyncThunk(
-  'user/loginUser',
+  "user/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:5001/api/users/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:5001/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
       });
 
       if (!response.ok) {
-        throw new Error('Login failed');
+        throw new Error("Login failed");
       }
 
       const data = await response.json();
-      return data; // Returns user info after successful login
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-// Async thunk to fetch user profile
 export const fetchUserProfile = createAsyncThunk(
-  'user/fetchUserProfile',
+  "user/fetchUserProfile",
   async (token, { rejectWithValue }) => {
     try {
-      const response = await fetch('http://localhost:5001/api/users/profile', {
-        method: 'GET',
+      const response = await fetch("http://localhost:5001/api/users/profile", {
+        method: "GET",
         headers: {
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch profile');
+        throw new Error("Failed to fetch profile");
       }
 
       const data = await response.json();
-      return data; // Returns user profile data
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -78,7 +75,7 @@ const initialState = {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     logout: (state) => {
@@ -90,7 +87,7 @@ const userSlice = createSlice({
     builder
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
-        state.loggedIn = true; 
+        state.loggedIn = true;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.user = action.payload;
@@ -118,7 +115,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.loggedIn = true; 
+        state.loggedIn = true;
         state.loading = false;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {

@@ -37,7 +37,6 @@ const Register = () => {
       if (registerUser.fulfilled.match(resultAction)) {
         toast.success("Registration successful!");
         navigate("/");
-        
       } else {
         toast.error(resultAction.payload);
       }

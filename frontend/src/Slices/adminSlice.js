@@ -17,14 +17,13 @@ export const updateProduct = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data; // Return the updated product
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
 
-// Async thunk to delete a product
 export const deleteProduct = createAsyncThunk(
   "admin/deleteProduct",
   async (productId, { rejectWithValue }) => {
@@ -41,7 +40,7 @@ export const deleteProduct = createAsyncThunk(
       }
 
       const data = await response.json();
-      return data; // Return a confirmation or remaining products after deletion
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -60,7 +59,7 @@ const adminSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Fetch products
+
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true;
       })
@@ -72,19 +71,17 @@ const adminSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      // Add product
       .addCase(addProduct.pending, (state) => {
         state.loading = true;
       })
       .addCase(addProduct.fulfilled, (state, action) => {
-        state.products.push(action.payload); // Add the new product to the state
+        state.products.push(action.payload);
         state.loading = false;
       })
       .addCase(addProduct.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      // Update product
       .addCase(updateProduct.pending, (state) => {
         state.loading = true;
       })
@@ -93,7 +90,7 @@ const adminSlice = createSlice({
           (product) => product.id === action.payload.id
         );
         if (index !== -1) {
-          state.products[index] = action.payload; // Update the product in the state
+          state.products[index] = action.payload;
         }
         state.loading = false;
       })
@@ -101,14 +98,13 @@ const adminSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      // Delete product
       .addCase(deleteProduct.pending, (state) => {
         state.loading = true;
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.products = state.products.filter(
           (product) => product.id !== action.payload.id
-        ); // Remove the deleted product from the state
+        );
         state.loading = false;
       })
       .addCase(deleteProduct.rejected, (state, action) => {

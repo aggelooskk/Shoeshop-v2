@@ -11,15 +11,7 @@ const ProductCarousel = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const { products, status, error } = useSelector((state) => state.products);
-
-  if (status === "loading")
-    return (
-      <p>
-        <Spinner />
-      </p>
-    );
-  if (status === "failed") return <p>Error: {error}</p>;
+  const { products } = useSelector((state) => state.products);
 
   return (
     <>
