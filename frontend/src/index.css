@@ -4,9 +4,49 @@ main {
 
   .navbar-brand {
     font-family: cursive, sans-serif;
-    font-size: xx-large;
+    font-size: 2rem;
   }
  
   h3 {
     color: black;
+  }
+
+  .carousel {
+    width: 1000px;
+  }
+
+  .banner {
+    background-image: url('/Users/aggelosk/Desktop/Shoeshop-v2/frontend/public/images/wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh; 
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+  
+  .banner .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .banner .content {
+    position: relative;
+    z-index: 2; /* Ensure content appears above overlay */
+  }
+  
+  .banner h1 {
+    font-family: cursive, sans-serif;
+    font-size: 3rem;
+
+  }
+  
+  .banner p {
+    font-size: 1.25rem;
   }

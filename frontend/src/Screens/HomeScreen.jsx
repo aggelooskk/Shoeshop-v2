@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import ProductCard from "../Components/ProductCard";
 import { fetchProducts } from "../Slices/productSlice";
 import ProductCarousel from "../Components/ProductCarousel";
+import Banner from "../Components/Banner";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,10 @@ const HomeScreen = () => {
   return (
     <>
       <Container>
+      <Banner />
+      <hr />
         <ProductCarousel />
+        <hr />
         <Row>
           {products.map((product) => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={4}>
