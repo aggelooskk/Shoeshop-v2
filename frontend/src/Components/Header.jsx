@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Navbar, Nav, Container, Badge } from "react-bootstrap";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { Navbar, Nav, Container, Badge, NavDropdown } from "react-bootstrap";
+import { FaShoppingCart, FaUser, FaShoppingBag } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
@@ -27,15 +27,9 @@ const Header = () => {
             <Nav className="ms-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <FaShoppingCart />
-                  {" "}
-                  Cart
-                  {" "}
+                  <FaShoppingCart /> Cart{" "}
                   {totalQty > 0 && (
-                    <Badge
-                      pill
-                      bg="danger"
-                    >
+                    <Badge pill bg="danger">
                       {totalQty}
                     </Badge>
                   )}
@@ -46,12 +40,23 @@ const Header = () => {
                   <FaUser /> Sign in
                 </Nav.Link>
               </LinkContainer>
-              <LinkContainer to="">
-                <Nav.Link>About</Nav.Link>
+              <LinkContainer to="/shop">
+                <Nav.Link>
+                  <FaShoppingBag /> Shop
+                </Nav.Link>
               </LinkContainer>
-              <LinkContainer to="">
-                <Nav.Link>Contact</Nav.Link>
-              </LinkContainer>
+              <NavDropdown title="More">
+                <NavDropdown.Item>
+                  <LinkContainer to="">
+                    <Nav.Link>About</Nav.Link>
+                  </LinkContainer>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <LinkContainer to="">
+                    <Nav.Link>Contact</Nav.Link>
+                  </LinkContainer>
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>

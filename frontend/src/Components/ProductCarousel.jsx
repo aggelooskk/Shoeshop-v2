@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel, Image, Row, Col } from "react-bootstrap";
 import { fetchProducts } from "../Slices/productSlice";
-import { Spinner } from "react-bootstrap";
 
 const ProductCarousel = () => {
   const dispatch = useDispatch();

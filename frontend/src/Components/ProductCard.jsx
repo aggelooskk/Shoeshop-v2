@@ -16,9 +16,9 @@ const ProductCard = ({ product }) => {
     <Card className="my-2 p-2 rounded shadow-lg">
       <Link to={`/product/${product._id}`}>
         <Card.Img
+        className="card-image"
           src={product.image}
           variant="top"
-          style={{ width: "100%", height: "220px", objectFit: "cover" }}
         />
       </Link>
       <Card.Body>
@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
             </Button>
           </Col>
           <Col className="text-end">
-            <Button variant="dark">
+            <Button variant="outline-danger">
               <FaHeart />
             </Button>
           </Col>
