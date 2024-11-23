@@ -22,10 +22,9 @@ const ProductCarousel = () => {
           <Carousel.Item key={index}>
             <Row className="d-flex justify-content-center align-items-center">
               <Col md={6}>
-                <Image
+                <Image className="carousel-image"
                   src={product.image}
                   alt={product.name}
-                  style={{ width: "100%", height: "250px", objectFit: "cover" }}
                   fluid
                 />
               </Col>
