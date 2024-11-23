@@ -13,10 +13,10 @@ const Banner = () => {
               Discover the latest trends in footwear with ShoeShop. Your style, your way.
             </p>
             <div className="d-flex justify-content-center">
-              <Button variant="outline-light" size="lg" className="me-3">
+              <Button variant="outline-dark" size="lg" className="me-3" href="/shop">
                 Shop Now
               </Button>
-              <Button variant="outline-light" size="lg">
+              <Button variant="outline-dark" size="lg">
                 Learn More
               </Button>
             </div>

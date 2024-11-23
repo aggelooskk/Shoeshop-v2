@@ -28,7 +28,6 @@ main {
   }
   
   .banner .overlay {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
     position: absolute;
     top: 0;
     left: 0;
@@ -44,14 +43,20 @@ main {
   
   .banner h1 {
     font-family: papyrus, sans-serif;
+    font-weight: bold;
     font-size: 3rem;
+    color: black;
 
   }
   
   .banner p {
     font-size: 1.25rem;
     font-family: papyrus, sans-serif;
+    font-weight: bolder;
+    color: black;
   }
+
+  /* */
 
 
 .card-image {
@@ -60,3 +65,9 @@ main {
   object-fit: cover;
 }
 
+.carousel-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+}
