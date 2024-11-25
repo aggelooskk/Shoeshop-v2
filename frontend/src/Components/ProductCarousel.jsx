@@ -14,21 +14,19 @@ const ProductCarousel = () => {
 
   return (
     <>
-      <Carousel
-        slide={true}
-        className="py-1 my-5"
-      >
+      <Carousel slide={true} className="py-1 my-5">
         {products.map((product, index) => (
           <Carousel.Item key={index}>
             <Row className="d-flex justify-content-center align-items-center">
               <Col>
-                <Image className="carousel-image"
+                <Image
+                  className="carousel-image"
                   src={product.image}
                   alt={product.name}
                   fluid
                 />
               </Col>
-              <Col className="text-start">
+              <Col className="carousel-description">
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
               </Col>

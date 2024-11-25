@@ -1,63 +1,61 @@
 main {
-    min-height: 90vh;
-  }
+  min-height: 90vh;
+}
 
-  .navbar-brand {
-    font-family: papyrus, sans-serif;
-    font-size: 2rem;
-  }
- 
-  h3 {
-    color: black;
-  }
+.navbar-brand {
+  font-family: papyrus, sans-serif;
+  font-size: 2rem;
+}
 
-  .carousel {
-    width: 1000px;
-  }
+h3 {
+  color: black;
+}
 
-  /* Banner */
-  .banner {
-    background-image: url('/Users/aggelosk/Desktop/Shoeshop-v2/frontend/public/images/wallpaper.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 80vh; 
-    position: relative;
-    color: white;
-    display: flex;
-    align-items: center;
-  }
-  
-  .banner .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  
-  .banner .content {
-    position: relative;
-    z-index: 2; /* Ensure content appears above overlay */
-  }
-  
-  .banner h1 {
-    font-family: papyrus, sans-serif;
-    font-weight: bold;
-    font-size: 3rem;
-    color: black;
+.carousel {
+  width: 1000px;
+}
 
-  }
-  
-  .banner p {
-    font-size: 1.25rem;
-    font-family: papyrus, sans-serif;
-    font-weight: bolder;
-    color: black;
-  }
+/* Banner */
+.banner {
+  background-image: url("/Users/aggelosk/Desktop/Shoeshop-v2/frontend/public/images/wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  position: relative;
+  color: white;
+  display: flex;
+  align-items: center;
+}
 
-  /* */
+.banner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
 
+.banner .content {
+  position: relative;
+  z-index: 2; /* Ensure content appears above overlay */
+}
+
+.banner h1 {
+  font-family: papyrus, sans-serif;
+  font-weight: bold;
+  font-size: 3rem;
+  color: black;
+}
+
+.banner p {
+  font-size: 1.25rem;
+  font-family: papyrus, sans-serif;
+  font-weight: bolder;
+  color: black;
+}
+
+/* */
 
 .card-image {
   width: 100%;
@@ -70,4 +68,22 @@ main {
   height: 100%;
   max-height: 300px;
   object-fit: cover;
+}
+
+@media (max-width: 1000px) {
+  .carousel-item .row {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: start;
+    line-break: normal;
+  }
+
+  .carousel-image {
+    max-width: 350px;
+    margin-bottom: 1rem;
+  }
+
+  .carousel-item .col {
+    margin-bottom: 1rem;
+  }
 }
