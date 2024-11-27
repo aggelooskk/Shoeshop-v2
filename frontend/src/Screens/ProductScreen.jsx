@@ -29,6 +29,7 @@ const ProductScreen = () => {
     loading,
     error,
   } = useSelector((state) => state.products);
+  console.log(error)
 
   useEffect(() => {
     dispatch(fetchProductById(productId));
@@ -47,7 +48,9 @@ const ProductScreen = () => {
       {loading ? (
         <Spinner />
       ) : error ? (
-        <Alert variant="danger">{error}</Alert>
+        <Alert variant="danger">
+  {typeof error === "string" ? error : error?.message || "An unknown error occurred"}
+</Alert>
       ) : (
         <>
           <Row>

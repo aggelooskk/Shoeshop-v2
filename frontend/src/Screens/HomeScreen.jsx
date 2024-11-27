@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Alert } from "react-bootstrap"; // Add Alert
 import ProductCard from "../Components/ProductCard";
 import { fetchProducts } from "../Slices/productSlice";
 import ProductCarousel from "../Components/ProductCarousel";
@@ -8,7 +8,7 @@ import Banner from "../Components/Banner";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.products);
+  const { products, loading, error } = useSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -17,16 +17,30 @@ const HomeScreen = () => {
   return (
     <>
       <Container>
-      <Banner />
-      <hr />
+        <Banner />
+        <hr />
         <ProductCarousel />
         <hr />
+
+        {/* Display error message if there is an error */}
+        {error && (
+          <Alert variant="danger">
+            {typeof error === "string"
+              ? error
+              : error.message || "An error occurred."}
+          </Alert>
+        )}
+
         <Row>
-          {products.map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={4}>
-              <ProductCard product={product} />
-            </Col>
-          ))}
+          {loading ? (
+            <p>Loading...</p> // Show loading state
+          ) : (
+            products.map((product) => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={4}>
+                <ProductCard product={product} />
+              </Col>
+            ))
+          )}
         </Row>
       </Container>
     </>
