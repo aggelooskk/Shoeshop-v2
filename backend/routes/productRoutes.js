@@ -1,18 +1,27 @@
 import express from "express";
-import Product from "../models/productModel.js";
-import { getProductById } from "../controllers/productController.js"
+import {
+  getProductById,
+  getAllProducts,
+  createProduct,
+  deleteProduct,
+  updateProduct,
+} from "../controllers/productController.js";
+import { protect, admin } from "../middleware/adminMiddleware.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  try {
-    const products = await Product.find({});
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// Public Route - Get all products
+router.get("/", getAllProducts);
 
-router.get('/:productId', getProductById);
+// Public Route - Get product by ID
+router.get("/:id", getProductById);
+
+// Admin Routes - Create, Update, and Delete products
+router.post("/", protect, admin, createProduct);
+
+router
+  .route("/:id")
+  .put(protect, admin, updateProduct)
+  .delete(protect, admin, deleteProduct);
 
 export default router;

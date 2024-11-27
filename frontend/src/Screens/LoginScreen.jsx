@@ -10,10 +10,10 @@ import {
   FormLabel,
   FormControl,
 } from "react-bootstrap";
-import { loginUser } from "../Slices/userSlice";
+import { loginUser } from "../Slices/authSlice";
 import { toast } from "react-toastify";
 
-const Login = () => {
+const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -73,4 +73,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginScreen;

@@ -1,19 +1,20 @@
 import express from "express";
-import User from "../models/userModel.js";
-import { registerUser, loginUser } from "../controllers/userController.js"
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  deleteUser,
+} from "../controllers/userController.js";
+import { protect, admin } from "../middleware/adminMiddleware.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  try {
-    const users = await User.find({});
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
+// Public Routes
 router.post("/register", registerUser);
 router.post("/login", loginUser);
+router.post("/logout", logoutUser);
+
+// Admin Routes
+router.route("/:id").delete(protect, admin, deleteUser);
 
 export default router;

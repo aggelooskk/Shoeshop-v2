@@ -13,7 +13,7 @@ import {
 import { registerUser } from "../Slices/userSlice";
 import { toast } from "react-toastify";
 
-const Register = () => {
+const RegisterScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -101,4 +101,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterScreen;
