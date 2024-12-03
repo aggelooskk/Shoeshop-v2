@@ -29,7 +29,7 @@ const ProductScreen = () => {
     loading,
     error,
   } = useSelector((state) => state.products);
-  console.log(error)
+  console.log(error);
 
   useEffect(() => {
     dispatch(fetchProductById(productId));
@@ -49,13 +49,20 @@ const ProductScreen = () => {
         <Spinner />
       ) : error ? (
         <Alert variant="danger">
-  {typeof error === "string" ? error : error?.message || "An unknown error occurred"}
-</Alert>
+          {typeof error === "string"
+            ? error
+            : error?.message || "An unknown error occurred"}
+        </Alert>
       ) : (
         <>
           <Row>
             <Col md={5}>
-              <Image src={product?.image} alt={product?.name} fluid  style={{ width: "500px", height: "auto" }}/>
+              <Image
+                src={product?.image}
+                alt={product?.name}
+                fluid
+                style={{ width: "500px", height: "auto" }}
+              />
             </Col>
             <Col md={4}>
               <ListGroup variant="flush">

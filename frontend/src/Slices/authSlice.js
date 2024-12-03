@@ -1,31 +1,29 @@
-// authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-// Login User
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:5001/api/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
-
-      const data = await response.json();
-      return data; // Include the token in the payload
+      const response = await axios.post(
+        "http://localhost:5001/api/users/login",
+        userData,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
     }
   }
 );
 
-// Logout User
-export const logoutUser = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState: {
     token: null,
@@ -43,9 +41,10 @@ export const logoutUser = createSlice({
     builder
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.token = action.payload.token; // Save token from login
+        state.token = action.payload.token;
         state.loggedIn = true;
         state.loading = false;
       })
@@ -56,5 +55,5 @@ export const logoutUser = createSlice({
   },
 });
 
-export const { logout } = logoutUser.actions;
-export default logoutUser.reducer;
+export const { logout } = authSlice.actions;
+export default authSlice.reducer;

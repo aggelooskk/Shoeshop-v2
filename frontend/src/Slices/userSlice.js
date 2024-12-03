@@ -1,48 +1,47 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-// Register User
 export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:5001/api/users/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Registration failed");
-      }
-
-      const data = await response.json();
-      return data;
+      const response = await axios.post(
+        "http://localhost:5001/api/users/register",
+        userData,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
     }
   }
 );
 
-// Fetch User Profile
 export const fetchUserProfile = createAsyncThunk(
   "user/fetchUserProfile",
   async (token, { rejectWithValue }) => {
     try {
-      const response = await fetch("http://localhost:5001/api/users/profile", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`, // Use token for authorization
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch profile");
-      }
-
-      const data = await response.json();
-      return data;
+      const response = await axios.get(
+        "http://localhost:5001/api/users/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
     }
   }
 );

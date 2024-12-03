@@ -38,7 +38,7 @@ h3 {
 
 .banner .content {
   position: relative;
-  z-index: 2; /* Ensure content appears above overlay */
+  z-index: 2;
 }
 
 .banner h1 {
@@ -54,7 +54,6 @@ h3 {
   font-weight: bolder;
   color: black;
 }
-
 /* */
 
 .card-image {
