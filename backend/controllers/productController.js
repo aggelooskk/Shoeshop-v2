@@ -73,12 +73,7 @@ export const updateProduct = async (req, res) => {
   if (product) {
     product.name = name;
     product.price = price;
-    product.description = description;
-    product.image = image;
-    product.brand = brand;
     product.category = category;
-    product.countInStock = countInStock;
-    product.numReviews = numReviews;
 
     const updatedProduct = await product.save();
     res.json(updatedProduct);

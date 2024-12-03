@@ -20,20 +20,22 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading } = useSelector((state) => state.user || { loading: false });
+  // Access loading and error state from Redux store
+  const { loading, error } = useSelector((state) => state.auth);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
+      // Dispatch loginUser async action
       const resultAction = await dispatch(loginUser({ email, password }));
       if (loginUser.fulfilled.match(resultAction)) {
-        toast.success("Succesfull login");
-        navigate("/");
+        toast.success("Successful login!");
+        navigate("/");  // Navigate to home or dashboard
       } else {
-        toast.error(resultAction.payload);
+        toast.error(resultAction.payload || "Login failed");
       }
     } catch (err) {
-      toast.error("An error occurred");
+      toast.error("An error occurred during login");
     }
   };
 
@@ -63,6 +65,8 @@ const LoginScreen = () => {
       <Button type="submit" variant="dark" className="mt-3" disabled={loading}>
         {loading ? "Loading..." : "Login"}
       </Button>
+
+      {error && <p className="text-danger mt-2">{error}</p>}
 
       <Row className="py-3">
         <Col>
