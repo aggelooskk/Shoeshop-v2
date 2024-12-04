@@ -31,7 +31,6 @@ const AdminScreen = () => {
   });
   const [showModal, setShowModal] = useState(false);
 
-  // Fetch products when the component mounts
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
@@ -50,9 +49,9 @@ const AdminScreen = () => {
   };
 
   const handleEditProduct = (product) => {
-    setEditingProduct(product._id); // Set the product ID when editing
+    setEditingProduct(product._id);
     setProductForm({
-      id: product._id, // Ensure the ID is set here as well
+      id: product._id,
       name: product.name,
       price: product.price,
       category: product.category,
@@ -63,7 +62,6 @@ const AdminScreen = () => {
   const handleUpdateProduct = async (e) => {
     e.preventDefault();
     try {
-      // Dispatch updateProduct with the correct data
       const resultAction = await dispatch(
         updateProduct({ id: editingProduct, ...productForm })
       );
@@ -131,7 +129,6 @@ const AdminScreen = () => {
         </tbody>
       </Table>
 
-      {/* Edit Product Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Product</Modal.Title>
@@ -155,8 +152,7 @@ const AdminScreen = () => {
               <Form.Label>Price</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Enter   
- product price"
+                placeholder="Enter product price"
                 name="price"
                 value={productForm.price}
                 onChange={handleFormChange}

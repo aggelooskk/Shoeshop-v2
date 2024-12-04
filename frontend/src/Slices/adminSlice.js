@@ -7,8 +7,8 @@ export const fetchProducts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get("http://localhost:5001/api/products");
-      console.log("Products:", response.data); // Ensure data is correct
-      return response.data; // Return the fetched data
+      console.log("Products:", response.data);
+      return response.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -44,14 +44,14 @@ export const updateProduct = createAsyncThunk(
   async (productData, { rejectWithValue, getState }) => {
     try {
       const state = getState();
-      const token = state.auth?.token; // Safe check for token
+      const token = state.auth?.token;
 
       if (!token) {
         throw new Error("No token found, please login first.");
       }
 
       const response = await axios.put(
-        `http://localhost:5001/api/products/${productData.id}`, // Ensure productData.id is used
+        `http://localhost:5001/api/products/${productData.id}`,
         productData,
         {
           headers: {
@@ -61,7 +61,7 @@ export const updateProduct = createAsyncThunk(
       );
 
       if (response.status === 200) {
-        return response.data; // Return the updated product data
+        return response.data;
       }
       throw new Error("Failed to update product");
     } catch (error) {
@@ -76,16 +76,16 @@ export const deleteProduct = createAsyncThunk(
   async (productId, { rejectWithValue }) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5001/api/products/${productId}` // Ensure the correct ID is used
+        `http://localhost:5001/api/products/${productId}`
       );
 
       if (!response.ok) {
         throw new Error("Failed to delete product");
       }
 
-      return productId; // Return the deleted product ID
+      return productId;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -108,7 +108,7 @@ export const deleteUser = createAsyncThunk(
 
       return userId;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -153,7 +153,7 @@ const adminSlice = createSlice({
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         const index = state.products.findIndex(
-          (product) => product._id === action.payload._id // Match using _id
+          (product) => product._id === action.payload._id
         );
         if (index !== -1) {
           state.products[index] = action.payload;
@@ -169,7 +169,7 @@ const adminSlice = createSlice({
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.products = state.products.filter(
-          (product) => product._id !== action.payload._id // Match using _id
+          (product) => product._id !== action.payload._id
         );
         state.loading = false;
       })

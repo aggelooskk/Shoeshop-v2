@@ -12,13 +12,9 @@ export const loginUser = createAsyncThunk(
           headers: { "Content-Type": "application/json" },
         }
       );
-      return response.data;  // response data should contain the token
+      return response.data;
     } catch (error) {
-      return rejectWithValue(
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
-      );
+      return rejectWithValue(error.response?.data || error.message);
     }
   }
 );
@@ -26,8 +22,8 @@ export const loginUser = createAsyncThunk(
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
-    token: localStorage.getItem("authToken") || null,  // Check localStorage for token
-    loggedIn: !!localStorage.getItem("authToken"),    // Set loggedIn based on token presence
+    token: localStorage.getItem("authToken") || null,
+    loggedIn: !!localStorage.getItem("authToken"),
     loading: false,
     error: null,
   },
@@ -35,7 +31,7 @@ export const authSlice = createSlice({
     logout: (state) => {
       state.token = null;
       state.loggedIn = false;
-      localStorage.removeItem("authToken");  // Remove token from localStorage
+      localStorage.removeItem("authToken");
     },
   },
   extraReducers: (builder) => {
@@ -45,10 +41,10 @@ export const authSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.token = action.payload.token;  // Save token to state
+        state.token = action.payload.token;
         state.loggedIn = true;
         state.loading = false;
-        localStorage.setItem("authToken", action.payload.token);  // Store token in localStorage
+        localStorage.setItem("authToken", action.payload.token);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

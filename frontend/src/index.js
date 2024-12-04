@@ -18,7 +18,7 @@ import RegisterScreen from "./Screens/RegisterScreen";
 import ProductScreen from "./Screens/ProductScreen";
 import ShopScreen from "./Screens/ShopScreen";
 import AdminScreen from "./Screens/AdminScreen";
-import AdminRoute from "./Components/AdminRoute";  // Import the ProtectedRoute component
+import AdminRoute from "./Components/AdminRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,15 +29,10 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/product/:productId" element={<ProductScreen />} />
-      {/* Protect the Admin route */}
-      <Route
-        path="/admin"
-        element={
-          <AdminRoute>
-            <AdminScreen />
-          </AdminRoute>
-        }
-      />
+
+      <Route path="/admin" element={<AdminRoute />}>
+        <Route path="/admin" element={<AdminScreen />} />
+      </Route>
     </Route>
   )
 );
