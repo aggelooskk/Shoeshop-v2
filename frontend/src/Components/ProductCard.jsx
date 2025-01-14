@@ -13,21 +13,17 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <Card className="my-2 p-2 rounded shadow-lg">
+    <Card className="my-2 p-2 ounded shadow-lg">
       <Link to={`/product/${product._id}`}>
         <Card.Img
-        className="card-image"
+          className="w-100 h-75 object-fit-cover"
           src={product.image}
           variant="top"
         />
       </Link>
       <Card.Body>
-        <Link to={`/product/${product._id}`}>
-          <Card.Title as="div">
-            <strong>{product.name}</strong>
-          </Card.Title>
-        </Link>
-        <Card.Text as="div">{product.description}</Card.Text>
+        <Card.Title className="fw-bold">{product.name}</Card.Title>
+        <Card.Text>{product.description}</Card.Text>
         <Card.Text as="h3">${product.price}</Card.Text>
         <Row className="mt-3">
           <Col>
@@ -35,7 +31,7 @@ const ProductCard = ({ product }) => {
               Add to Cart
             </Button>
           </Col>
-          <Col className="text-end">
+          <Col>
             <Button variant="outline-danger">
               <FaHeart />
             </Button>

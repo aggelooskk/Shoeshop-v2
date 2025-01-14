@@ -2,19 +2,6 @@ main {
   min-height: 90vh;
 }
 
-.navbar-brand {
-  font-family: papyrus, sans-serif;
-  font-size: 2rem;
-}
-
-h3 {
-  color: black;
-}
-
-.carousel {
-  width: 1000px;
-}
-
 /* Banner */
 .banner {
   background-image: url("/Users/aggelosk/Desktop/Shoeshop-v2/frontend/public/images/wallpaper.jpg");
@@ -41,32 +28,9 @@ h3 {
   z-index: 2;
 }
 
-.banner h1 {
-  font-family: papyrus, sans-serif;
-  font-weight: bold;
-  font-size: 3rem;
-  color: black;
-}
-
-.banner p {
-  font-size: 1.25rem;
-  font-family: papyrus, sans-serif;
-  font-weight: bolder;
-  color: black;
-}
 /* */
-
-.card-image {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
 .carousel-image {
-  width: 100%;
-  height: 100%;
   max-height: 300px;
-  object-fit: cover;
 }
 
 @media (max-width: 1000px) {

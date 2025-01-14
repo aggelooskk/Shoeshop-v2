@@ -20,7 +20,7 @@ const ProductCarousel = () => {
             <Row className="d-flex justify-content-center align-items-center">
               <Col>
                 <Image
-                  className="carousel-image"
+                  className="carousel-image w-100 h-100 object-fit-cover"
                   src={product.image}
                   alt={product.name}
                   fluid

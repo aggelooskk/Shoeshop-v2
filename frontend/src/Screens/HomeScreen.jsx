@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col, Alert } from "react-bootstrap"; // Add Alert
+import { Container, Row, Col, Alert } from "react-bootstrap";
 import ProductCard from "../Components/ProductCard";
 import { fetchProducts } from "../Slices/productSlice";
 import ProductCarousel from "../Components/ProductCarousel";
@@ -21,8 +21,6 @@ const HomeScreen = () => {
         <hr />
         <ProductCarousel />
         <hr />
-
-        {/* Display error message if there is an error */}
         {error && (
           <Alert variant="danger">
             {typeof error === "string"
@@ -33,7 +31,7 @@ const HomeScreen = () => {
 
         <Row>
           {loading ? (
-            <p>Loading...</p> // Show loading state
+            <p>Loading...</p>
           ) : (
             products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={4}>

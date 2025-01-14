@@ -20,17 +20,15 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Access loading and error state from Redux store
   const { loading, error } = useSelector((state) => state.auth);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      // Dispatch loginUser async action
       const resultAction = await dispatch(loginUser({ email, password }));
       if (loginUser.fulfilled.match(resultAction)) {
         toast.success("Successful login!");
-        navigate("/");  // Navigate to home or dashboard
+        navigate("/");
       } else {
         toast.error(resultAction.payload || "Login failed");
       }

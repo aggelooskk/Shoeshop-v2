@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header>
       <Navbar
-        className="py-4"
+        className="py-4 font-monospace"
         bg="dark"
         variant="dark"
         expand="md"
@@ -20,7 +20,9 @@ const Header = () => {
       >
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>ShoeShop</Navbar.Brand>
+            <Navbar.Brand className="fs-3">
+              ShoeShop
+            </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
